@@ -2,6 +2,10 @@ require("dotenv").config();
 let express = require("express");
 let app = express();
 app.use("/public", express.static(__dirname + "/public"));
+app.use("/json", function (req, res, next) {
+  console.log(`${req.method} ${req.path} - ${req.ip}`);
+  next();
+});
 app.get("/", function (req, res) {
   //   res.send("Hello Express");
   let absolutePath = __dirname + "/views/index.html";
