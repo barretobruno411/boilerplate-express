@@ -1,4 +1,5 @@
 require("dotenv").config();
+const bodyParser = require("body-parser");
 let express = require("express");
 let app = express();
 app.use("/public", express.static(__dirname + "/public"));
@@ -36,6 +37,9 @@ app.get("/:word/echo", function (req, res) {
 });
 app.route("/name").get(function (req, res) {
   console.log(req.query);
+  if (!req.query.first || !req.query.last) {
+    res.json({ name: "not a valid name" });
+  }
   res.json({ name: `${req.query.first} ${req.query.last}` });
 });
 
