@@ -30,7 +30,12 @@ app.get(
   }
 );
 app.get("/:word/echo", function (req, res) {
+  // wen define a route with :value, this value become a key of params object
+  //wath is inputed on toute becomes the value of key :value
   res.json({ echo: req.params.word });
+});
+app.route("/name").get(function (req, res) {
+  res.json({ name: `${req.query.first} ${req.query.last}` });
 });
 
 module.exports = app;
