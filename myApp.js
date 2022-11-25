@@ -36,12 +36,16 @@ app.get("/:word/echo", function (req, res) {
   //wath is inputed on toute becomes the value of key :value
   res.json({ echo: req.params.word });
 });
-app.route("/name").get(function (req, res) {
-  console.log(req.query);
-  if (!req.query.first || !req.query.last) {
-    res.json({ name: "not a valid name" });
-  }
-  res.json({ name: `${req.query.first} ${req.query.last}` });
-});
+app
+  .route("/name")
+  .get(function (req, res) {
+    if (!req.query.first || !req.query.last) {
+      res.json({ name: "not a valid name" });
+    }
+    res.json({ name: `${req.query.first} ${req.query.last}` });
+  })
+  .post(function (req, res) {
+    res.json({ name: `${req.body.first} ${req.body.last}` });
+  });
 
 module.exports = app;
