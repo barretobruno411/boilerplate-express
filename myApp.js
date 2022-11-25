@@ -39,9 +39,9 @@ app.get("/:word/echo", function (req, res) {
 app
   .route("/name")
   .get(function (req, res) {
-    if (!req.query.first || !req.query.last) {
-      res.json({ name: "not a valid name" });
-    }
+    // if (!req.query.first || !req.query.last) {
+    //   res.json({ name: "not a valid name" });
+    // }
     res.json({ name: `${req.query.first} ${req.query.last}` });
   })
   .post(function (req, res) {
